@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-from presci.presci import PreSci
+from presci.app.presci import PreSci
 from model.model import Model
 
 PATH_TO_TRAINING_DATASET = "train.csv"
@@ -13,9 +13,9 @@ if __name__ == '__main__':
     train = pd.read_csv(PATH_TO_TRAINING_DATASET)
     test = pd.read_csv(PATH_TO_TEST_DATASET)
 
+    train.drop(["PassengerId", "Name", "Ticket"], inplace=True, axis=1)
     # select features and apply custom transformation
     def custom_transform(data):
-        data.drop(["PassengerId", "Name", "Ticket"], inplace=True, axis=1)
         data.loc[:,"Cabin"] = data.loc[:,"Cabin"].apply(lambda x: x[0] if type(x) == str else x)
         data.loc[:,"Cabin"] = data.loc[:,"Cabin"].copy().replace({"T":0,"A":1,"G":2,"C":3,"F":4,"B":5,"E":6,"D":7})
         data.loc[:,"Embarked"] = data.loc[:,"Embarked"].copy().replace({"S":0, "Q":1, "C":2})

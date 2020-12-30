@@ -15,8 +15,11 @@ help: ## Print this help
 setup: ## Install dependencies
 	pip install -r requirements.txt
 
-update_submodules:
+update_submodules: ## Update all submodules to master branch
 	echo "Good Day Friend, building all submodules while checking out from MASTER branch."
 	git submodule update 
 	git submodule foreach git checkout master 
 	git submodule foreach git pull origin master
+
+run: ## Run ML Pipeline
+	python pipeline.py

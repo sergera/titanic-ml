@@ -17,15 +17,13 @@ class Model:
 
         self.fit()
 
-
     def fit(self):
         self.model.fit(self.X_train, self.y_train)
         return self
 
-
     def predict(self, data):
         ''' obtain predictions'''
-        predictions = self.model.predict_proba(data)[:,1]
+        predictions = self.model.predict(data)
         return predictions
     
     def evaluate_model(self):
@@ -38,9 +36,6 @@ class Model:
         print('train accuracy: ',accuracy_score(self.y_train, pd.Series(train_pred)))
         print('test score: ',self.model.score(self.X_test, pd.DataFrame(self.y_test)))
         print('test accuracy: ',accuracy_score(self.y_test, pd.Series(test_pred)))
-
-        train_pred = np.where(train_pred >= 0.8, 1, 0)
-        test_pred = np.where(test_pred >= 0.8, 1, 0)
 
         print('train r2: {}'.format(r2_score(self.y_train, train_pred)))
         print('test r2: {}'.format(r2_score(self.y_test, test_pred)))

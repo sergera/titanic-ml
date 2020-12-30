@@ -1,3 +1,4 @@
 [submodule "presci"]
 	path = presci
 	url = https://github.com/sergera/presci.git
+	branch = master

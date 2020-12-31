@@ -15,7 +15,7 @@ help: ## Print this help
 setup: ## Install dependencies
 	pip install -r requirements.txt
 
-update_submodules: ## Update all submodules to master branch
+subupdate: ## Update all submodules to master branch
 	echo "Good Day Friend, building all submodules while checking out from MASTER branch."
 	git submodule update 
 	git submodule foreach git checkout master 

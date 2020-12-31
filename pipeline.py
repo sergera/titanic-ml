@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-from presci.app.presci import PreSci
+from presci.presci import PreSci
 from model.model import Model
 
 PATH_TO_TRAINING_DATASET = "train.csv"

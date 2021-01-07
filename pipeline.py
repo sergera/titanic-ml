@@ -18,7 +18,7 @@ if __name__ == '__main__':
         data.loc[:,"Cabin"] = data.loc[:,"Cabin"].apply(lambda x: x[0] if type(x) == str else x)
         return data
 
-    preprocessor = PreSci(
+    presci = PreSci(
         train, 
         TARGET,
         unique_threshold=0.7,
@@ -37,12 +37,11 @@ if __name__ == '__main__':
         }
     )
 
-    X_train, X_test, y_train, y_test = preprocessor.transform_fit()
+    X_train, X_test, y_train, y_test = presci.transform_fit()
     model = Model(X_train, y_train, X_test, y_test, solver='saga', max_iter=10000)
-
     model.evaluate_model()
 
-    transformed_test = preprocessor.transform(test)
+    transformed_test = presci.transform(test)
     predictions = model.predict(transformed_test).astype(int)
 
     predictions_df = pd.DataFrame({'PassengerId': test.PassengerId.copy(), 'Survived': predictions.copy()})
